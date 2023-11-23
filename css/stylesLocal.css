@@ -1,0 +1,23 @@
+.bg-page{
+    background-image: url("../assets/img/bg-masthead.jpg") !important;
+}
+.mpad-1{
+    margin: 1rem;
+}
+.row-custom{
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-top: var(--bs-gutter-y);
+}
+.w-10-custom{
+    width: 10%!important;
+    height: 1.875rem;
+}
+.w-90-custom{
+    width: 90%!important;
+    height: 1.875rem;
+}
+
