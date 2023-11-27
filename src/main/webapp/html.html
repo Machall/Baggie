@@ -1,0 +1,84 @@
+<%@ page import="tecnicas.tasklist.models.Task" %>
+<%@ page import="java.util.List" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Task List</title>
+</head>
+<body>
+    <h2>${tasks.get(0)}</h2>
+    <% 
+    List<Task> taskList = (List<Task>) request.getAttribute("tasks");
+    for (int i = 0; i < taskList.size(); i++) { %>
+    <p><%= taskList.get(i) %></p>
+    
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Activities</th>
+        </tr>
+        
+            <tr>
+                <td><%= taskList.get(i).getName() %></td>
+                <td><%= taskList.get(i).getDescription() %></td>
+                <td><%= taskList.get(i).getActivities() %></td>
+            </tr>
+        
+            <% } %>
+    </table>
+</body>
+</html>
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    var checkboxes1 = document.querySelectorAll('#divInComplete .form-check-input');
+    var progressBar1 = document.querySelector('#divInComplete .progress-bar');
+
+    checkboxes1.forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
+            var checkedCheckboxes = document.querySelectorAll('#divInComplete .form-check-input:checked').length;
+            var totalCheckboxes = checkboxes1.length;
+            var percentage = (checkedCheckboxes / totalCheckboxes) * 100;
+
+            progressBar1.style.width = percentage + '%';
+            progressBar1.setAttribute('aria-valuenow', percentage);
+
+
+            if (percentage === 100) {
+                progressBar1.classList.remove('bg-primary');
+                progressBar1.classList.add('bg-success'); // Cambia a rojo cuando se completa
+            } else {
+                progressBar1.classList.remove('bg-success'); // Elimina la clase roja si no está completa
+                progressBar1.classList.add('bg-primary');
+            }
+        });
+    });
+
+
+    var checkboxes2 = document.querySelectorAll('#divComplete .form-check-input');
+    var progressBar2 = document.querySelector('#divComplete .progress-bar');
+
+    checkboxes2.forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
+            var checkedCheckboxes = document.querySelectorAll('#divComplete .form-check-input:checked').length;
+            var totalCheckboxes = checkboxes2.length;
+            var percentage = (checkedCheckboxes / totalCheckboxes) * 100;
+
+            progressBar2.style.width = percentage + '%';
+            progressBar2.setAttribute('aria-valuenow', percentage);
+
+
+            if (percentage === 100) {
+                progressBar2.classList.remove('bg-primary');
+                progressBar2.classList.add('bg-success'); // Cambia a rojo cuando se completa
+            } else {
+                progressBar2.classList.remove('bg-success'); // Elimina la clase roja si no está completa
+                progressBar2.classList.add('bg-primary');
+            }
+        });
+    });
+});
+
